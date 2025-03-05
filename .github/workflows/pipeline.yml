@@ -10,7 +10,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Print Hello World
-        run: ./run.sh
+        run: bash ./.github/workflows/run.sh
 
       - name: Print Secret
         env:

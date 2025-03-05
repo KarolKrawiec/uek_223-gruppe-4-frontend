@@ -6,37 +6,32 @@ jobs:
   hello-world:
     runs-on: ubuntu-latest
     steps:
-    
-name: Checkout repository
-    uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    
-name: Run script locally
-    run: bash ./.github/workflows/run.sh
+      - name: Run script locally
+        run: bash ./.github/workflows/run.sh
 
-    
-name: Print Secret
-    env:
-      FIRSTSTEPSREPOSITORYSECRET: ${{ secrets.FIRSTSTEPSREPOSITORYSECRET }}
-    run: echo $FIRSTSTEPSREPOSITORYSECRET
+      - name: Print Secret
+        env:
+          FIRSTSTEPSREPOSITORYSECRET: ${{ secrets.FIRSTSTEPSREPOSITORYSECRET }}
+        run: echo $FIRSTSTEPSREPOSITORYSECRET
 
-    
-name: Copy run.sh to remote server
-    uses: appleboy/scp-action@master
-    with:
-      host: ${{ secrets.HOST }}
-      username: ${{ secrets.USERNAME }}
-      password: ${{ secrets.PASSWORD }}
-      port: 2222
-      source: ./.github/workflows/run.sh
-      target: /home/${{ secrets.USERNAME }}/run.sh
+      - name: Copy run.sh to remote server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: 2222
+          source: ./.github/workflows/run.sh
+          target: /home/${{ secrets.USERNAME }}/run.sh
 
-    
-name: Execute run.sh on remote server
-    uses: appleboy/ssh-action@master
-    with:
-      host: ${{ secrets.HOST }}
-      username: ${{ secrets.USERNAME }}
-      password: ${{ secrets.PASSWORD }}
-      port: 2222
-      script: bash /home/${{ secrets.USERNAME }}/run.sh
+      - name: Execute run.sh on remote server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: 2222
+          script: bash /home/${{ secrets.USERNAME }}/run.sh

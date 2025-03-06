@@ -26,16 +26,6 @@ jobs:
           port: 2222
           script: echo “Hello World”
 
-      - name: Copy run.sh to remote server
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: 2222
-          source: ./.github/workflows/run.sh
-          target: ./run.sh
-
       - name: Execute run.sh on remote server
         uses: appleboy/ssh-action@master
         with:

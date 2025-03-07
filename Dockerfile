@@ -1,5 +1,5 @@
 # Build stage using Node.js
-FROM node:23-apline3.20 AS builder
+FROM node:20-alpine AS builder  # Using a more stable and common Node.js version
 
 WORKDIR /app
 

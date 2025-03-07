@@ -27,11 +27,7 @@ jobs:
           context: .
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/my-react-app:latest
-          
-  deploy:
-    needs: build-and-push
-    runs-on: ubuntu-latest
-    steps:
+
       - name: Deploy to Server
         uses: appleboy/ssh-action@v0.1.10
         with:
@@ -42,3 +38,4 @@ jobs:
           script: |
             cd ~
             ./deploy.sh
+          

@@ -34,8 +34,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          
+          port: 2222
           script: |
-            cd ~
             ./deploy.sh
           
